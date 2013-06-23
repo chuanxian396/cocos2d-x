@@ -24,7 +24,7 @@ void TestSharedPointer::onEnter()
     // scene
     _scene = shared::Node::create("scene");
 
-    // this scene has 10 layers
+    // this scene has LAYERS_PER_SCENE layers
     for(int i = 0; i < LAYERS_PER_SCENE; i++)
     {
         // tag for layer
@@ -36,7 +36,7 @@ void TestSharedPointer::onEnter()
         auto layer = shared::Node::create(tag.c_str());
         _scene->addChild(layer);
                 
-        // each layer has 20 nodes
+        // each layer has NODES_PER_LAYER nodes
         for(int j = 0; j < NODES_PER_LAYER; j++)
         {
             // tag for node

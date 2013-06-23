@@ -80,9 +80,9 @@ bool HelloWorld::init()
 
 void HelloWorld::onEnter()
 {
-    float duration;
-    float total1 = 0;
-    float total2 = 0;
+    double duration;
+    double total1 = 0;
+    double total2 = 0;
     const int TEST_TIMES = 100;
     Profile profile;
     
@@ -96,9 +96,10 @@ void HelloWorld::onEnter()
         {
             test1.update();
         }
-        duration = profile.stop();
+        profile.stop();
+        duration = profile.getDuration();
         total1 += duration;
-        CCLog("TestSharedPointer::update takes %f ms\n", duration);
+        CCLog("TestSharedPointer::update takes %lf ms\n", duration);
     }
     
     TestCppPointer test2;
@@ -111,13 +112,14 @@ void HelloWorld::onEnter()
         {
             test2.update();
         }
-        duration = profile.stop();
+        profile.stop();
+        duration = profile.getDuration();
         total2 += duration;
-        CCLog("TestCppPointer::update takes %f ms\n", duration);
+        CCLog("TestCppPointer::update takes %lf ms\n", duration);
     }
     
-    CCLog("Avg share_ptr duration %f ms\n", total1/TEST_TIMES);
-    CCLog("Avg c++ ptr duration %f ms\n", total2/TEST_TIMES);
+    CCLog("Avg share_ptr duration %lf ms\n", (total1/TEST_TIMES));
+    CCLog("Avg c++ ptr duration %lf ms\n", (total2/TEST_TIMES));
 }
 
 void HelloWorld::menuCloseCallback(CCObject* pSender)
